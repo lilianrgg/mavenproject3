@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMercanciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{mercanciasController.selected.id}" title="#{bundle.CreateMercanciasTitle_id}" required="true" requiredMessage="#{bundle.CreateMercanciasRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_nombreProducto}" for="nombreProducto" />
+                    <h:inputText id="nombreProducto" value="#{mercanciasController.selected.nombreProducto}" title="#{bundle.CreateMercanciasTitle_nombreProducto}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_ciudadDestino}" for="ciudadDestino" />
+                    <h:inputText id="ciudadDestino" value="#{mercanciasController.selected.ciudadDestino}" title="#{bundle.CreateMercanciasTitle_ciudadDestino}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{mercanciasController.selected.direccion}" title="#{bundle.CreateMercanciasTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_fechaSalida}" for="fechaSalida" />
+                    <h:inputText id="fechaSalida" value="#{mercanciasController.selected.fechaSalida}" title="#{bundle.CreateMercanciasTitle_fechaSalida}" >
+                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_precio}" for="precio" />
+                    <h:inputText id="precio" value="#{mercanciasController.selected.precio}" title="#{bundle.CreateMercanciasTitle_precio}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_estadoEnvio}" for="estadoEnvio" />
+                    <h:inputText id="estadoEnvio" value="#{mercanciasController.selected.estadoEnvio}" title="#{bundle.CreateMercanciasTitle_estadoEnvio}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_destinatarioId}" for="destinatarioId" />
+                    <h:inputText id="destinatarioId" value="#{mercanciasController.selected.destinatarioId}" title="#{bundle.CreateMercanciasTitle_destinatarioId}" />
+                    <h:outputLabel value="#{bundle.CreateMercanciasLabel_usuarioRegistroId}" for="usuarioRegistroId" />
+                    <h:inputText id="usuarioRegistroId" value="#{mercanciasController.selected.usuarioRegistroId}" title="#{bundle.CreateMercanciasTitle_usuarioRegistroId}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mercanciasController.create}" value="#{bundle.CreateMercanciasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{mercanciasController.prepareList}" value="#{bundle.CreateMercanciasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMercanciasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMercanciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMercanciasEmpty}" rendered="#{mercanciasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{mercanciasController.items.rowCount > 0}">
+                    <h:outputText value="#{mercanciasController.pagination.pageFirstItem + 1}..#{mercanciasController.pagination.pageLastItem + 1}/#{mercanciasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{mercanciasController.previous}" value="#{bundle.Previous} #{mercanciasController.pagination.pageSize}" rendered="#{mercanciasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{mercanciasController.next}" value="#{bundle.Next} #{mercanciasController.pagination.pageSize}" rendered="#{mercanciasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{mercanciasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_nombreProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_ciudadDestino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciudadDestino}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_direccion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_fechaSalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaSalida}">
+                                <f:convertDateTime pattern="dd/mm/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_precio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_estadoEnvio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoEnvio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_destinatarioId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.destinatarioId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMercanciasTitle_usuarioRegistroId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioRegistroId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{mercanciasController.prepareView}" value="#{bundle.ListMercanciasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{mercanciasController.prepareEdit}" value="#{bundle.ListMercanciasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{mercanciasController.destroy}" value="#{bundle.ListMercanciasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{mercanciasController.prepareCreate}" value="#{bundle.ListMercanciasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMercanciasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
